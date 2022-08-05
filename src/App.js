@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes,Route,useNavigate,useParams } from 'react-router';
-import React, { useEffect, useState, useContext, createContext, } from 'react';
+import React, { useState, useContext, createContext, } from 'react';
 import {Toolsbar,Admin} from './toolsbar'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -76,7 +76,7 @@ function SignUp(){
           username,
           password
         }
-    fetch(`${api}/signup`, {
+    fetch(`${api}signup`, {
       method: "POST",
       body: JSON.stringify(newusers),
       headers: {
@@ -142,7 +142,7 @@ const { setUser,user,setbutton1 } = useContext(MyContext)
       password
     }
     setUser(oldusers);
-fetch(`${api}/login`, {
+fetch(`${api}login`, {
   method: "POST",
   body: JSON.stringify(oldusers),
   headers: {
@@ -214,7 +214,7 @@ function Movies(){
 
   const [movie,setmovie]=useState([])
     
-  fetch(`${api}/home`)
+  fetch(`${api}home`)
   .then(data=>data.json().then(mov=>setmovie(mov)))
  
       return(
@@ -231,9 +231,10 @@ function Getmovies({mov}){
   return(
     <div className='col-lg-4'>
     <img src={mov.pic}/> 
-    <h3>{mov.name}<span>{mov.rating}</span></h3>
+    <h2 className="moviename">{mov.name}</h2>
+    <h5><span>Rating :  <i class="fa fa-star" aria-hidden="true"></i> {mov.rating}</span></h5>
     <p>{mov.description}</p>
-    <button onClick={()=>setlike(like+1)}>like{like}</button>
+    <button onClick={()=>setlike(like+1)}><i class="fa fa-thumbs-up" aria-hidden="true"></i> {like}</button>
     <div className="ticket-book">
     <Button variant="contained" onClick={()=>navigate("/bookYourSeats/"+id)}>Book Now</Button>
     </div>
@@ -253,7 +254,7 @@ function BookYourSeats(){
          
 
 
-  fetch(`${api}/bookYourSeats/${id}`)
+  fetch(`${api}bookYourSeats/${id}`)
   .then(data=>data.json().then(mov=>setseat(mov)))
          
   
@@ -294,7 +295,7 @@ function BookYourSeats(){
          obj[k] = "blocked";
        });
         
-       fetch(`${api}/bookYourSeats/${id}`,{
+       fetch(`${api}bookYourSeats/${id}`,{
          method:"PUT",
          body:JSON.stringify(obj),
          headers:{
@@ -436,8 +437,9 @@ function BookedYourSeats(){
   return(
     <div>
       <h1>
-        {seats}
-      </h1>
+        Thank you for booking</h1>
+        <h3>Your Sheet Number :  {seats}
+      </h3>
 
     </div>
   )

@@ -1,1 +1,1 @@
-export var api = "https://santhosh-node1.herokuapp.com"
+export var api = "https://movie-ticket-booking-app-1.herokuapp.com/";

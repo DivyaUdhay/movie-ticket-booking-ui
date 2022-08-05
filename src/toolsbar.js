@@ -17,7 +17,7 @@ export const  Toolsbar=()=> {
         <AppBar position="static">
           <Toolbar>
             <Button color="inherit" onClick={() => navigate("home")}>home</Button>
-            <Button color="inherit" onClick={() => navigate("bookedYourSeats")}>booked</Button>
+            <Button color="inherit" onClick={() => navigate("bookedYourSeats")}>Ticket Details</Button>
             <Button color="inherit" disabled={button} onClick={() =>{ 
               
               navigate("login")
